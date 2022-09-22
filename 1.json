@@ -1,0 +1,133 @@
+{
+    "Hospital": {
+        "Patients": [
+            {
+                "Id": 50109113325,
+                "Sex": "male",
+                "FullName": "Vilius Tažauskas",
+                "Birthdate": "2001-09-11",
+                "MedicalDebt": 484.11,
+                "MedicalHistory": [
+                    {
+                        "DoctorRef": "D000001",
+                        "Diagnosis": "Venezuelan hemorrhagic fever",
+                        "Treatment": {
+                            "Prescription": {
+                                "Measure": "mg",
+                                "Name": "Ribavirin",
+                                "DoseSize": 250,
+                                "DosingInterval": "Daily",
+                                "Amount": 16
+                            }
+                        },
+                        "AdmissionNote": "Complains about difficulty breathing. Body temperature at admission 39℃. Patient does not use any visual aids. Upper airway sounds heard diffusely across all lung fields, persistent rattling but non-productive cough exhibited throughout exam."
+                    },
+                    {
+                        "DoctorRef": "D000014",
+                        "Diagnosis": "Sepsis",
+                        "Treatment": {
+                            "Prescription": [
+                                {
+                                    "Measure": "g",
+                                    "DoseSize": 1,
+                                    "DosingInterval": "2 times a day",
+                                    "Amount": 20
+                                },
+                                {
+                                    "Measure": "g",
+                                    "Name": "Ceftriaxone",
+                                    "DoseSize": 1,
+                                    "DosingInterval": "3 times a day",
+                                    "Amount": 30
+                                }
+                            ]
+                        },
+                        "AdmissionNote": "Patient admitted thru emergency room with the diagnosis of “Due to concern for sepsis,” from unknown source, broad spectrum antibiotics started.” Vital signs: Temperature 38.5, heart rate 120, blood pressure 166/78, pulse oxygenation 92%."
+                    }
+                ]
+            },
+            {
+                "Id": 61101112212,
+                "Sex": "female",
+                "FullName": "Gintautė Rimšelytė",
+                "Birthdate": "2011-01-11",
+                "MedicalDebt": 0,
+                "MedicalHistory": []
+            },
+            {
+                "Id": 48504211758,
+                "Sex": "female",
+                "FullName": "Gintautė Rimšelytė",
+                "Birthdate": "1985-04-21",
+                "MedicalDebt": 18400.74,
+                "MedicalHistory": [
+                    {
+                        "DoctorRef": "D004744",
+                        "Date": "2010-04-20",
+                        "Diagnosis": "Lymphoma",
+                        "Treatment": {
+                            "Prescription": [
+                                {
+                                    "Measure": "mg",
+                                    "Name": "Altretamine",
+                                    "DoseSize": 260,
+                                    "DosingInterval": "Daily",
+                                    "Amount": 28
+                                },
+                                {
+                                    "Measure": "mg",
+                                    "Name": "Chlorambucil",
+                                    "DoseSize": 2,
+                                    "DosingInterval": "Daily",
+                                    "Amount": 60
+                                },
+                                {
+                                    "Measure": "mg",
+                                    "Name": "Trabectedin",
+                                    "DoseSize": 2,
+                                    "DosingInterval": "Every 8 hours",
+                                    "Amount": 80
+                                }
+                            ]
+                        },
+                        "AdmissionNote": "Patient came to ER, was vomiting blood; lymphocyte 78%, rbc 2.74."
+                    }
+                ]
+            }
+        ],
+        "Employees": [
+            {
+                "Id": "D000001",
+                "FullName": "Faustas Mažeikis",
+                "License": "MPL-10931",
+                "Speciality": "Diagnostician",
+                "Department": "Diagnostics",
+                "PhoneNumber": "+37061417844"
+            },
+            {
+                "Id": "D000002",
+                "FullName": "Joana Irisa",
+                "License": "MPL-14274",
+                "Speciality": "Neurosurgeon",
+                "Department": "Surgery",
+                "PhoneNumber": "+37065729345"
+            },
+            {
+                "Id": "D000014",
+                "FullName": "Karolina Marmeladova",
+                "License": "MPL-19238",
+                "Speciality": "General Practitioner",
+                "Department": "Family Medicine",
+                "PhoneNumber": "+37062021441"
+            },
+            {
+                "Id": "D004744",
+                "FullName": "Viljemas Baltasis",
+                "License": "MPL-20121",
+                "Speciality": "Oncologist",
+                "Department": "Oncology",
+                "PhoneNumber": "+37067777777"
+            }
+        ]
+    }
+}

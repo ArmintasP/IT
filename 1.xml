@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<Hospital xmlns="www.mif.vu.lt/hospital">
+<Hospital xmlns="www.mif.vu.lt/hospital"
+          xmlns:doctor="www.mif.vu.lt/doctors">
     <Patients xlmns="www.mif.vu.lt/patients">
         <Patient id="50109113325" sex="male">
             <FullName>Vilius Tažauskas</FullName>
@@ -8,13 +9,12 @@
             <MedicalHistory>
                 <MedicalRecord>
                     <Doctor ref="D000001"/>
-                    <Date></Date>
                     <Diagnosis>Venezuelan hemorrhagic fever</Diagnosis>
                     <Treatment>
                         <Prescription measure="mg">
                             <Name>Ribavirin</Name>
                             <DoseSize>250</DoseSize>
-                            <DosingInterval>>Daily</DosingInterval>
+                            <DosingInterval>Daily</DosingInterval>
                             <Amount>16</Amount>
                         </Prescription>
                     </Treatment>
@@ -24,7 +24,6 @@
                 </MedicalRecord>
                 <MedicalRecord>
                     <Doctor ref="D000014"/>
-                    <Date></Date>
                     <Diagnosis>Sepsis</Diagnosis>
                     <Treatment>
                         <Prescription measure="g">
@@ -35,7 +34,7 @@
                         <Prescription measure="g">
                             <Name>Ceftriaxone</Name>
                             <DoseSize>1</DoseSize>
-                            <DosingInterval>>3 times a day</DosingInterval>
+                            <DosingInterval>3 times a day</DosingInterval>
                             <Amount>30</Amount>
                         </Prescription>
                     </Treatment>
@@ -58,19 +57,18 @@
             <MedicalHistory>
                 <MedicalRecord>
                     <Doctor ref="D004744"/>
-                    <Date>2010-04-20</Date>
                     <Diagnosis>Lymphoma</Diagnosis>
                     <Treatment>
                         <Prescription measure="mg">
                             <Name>Altretamine</Name>
                             <DoseSize>260</DoseSize>
-                            <DosingInterval>>Daily</DosingInterval>
+                            <DosingInterval>Daily</DosingInterval>
                             <Amount>28</Amount>
                         </Prescription>
                         <Prescription measure="mg">
                             <Name>Chlorambucil</Name>
                             <DoseSize>2</DoseSize>
-                            <DosingInterval>>Daily</DosingInterval>
+                            <DosingInterval>Daily</DosingInterval>
                             <Amount>60</Amount>
                         </Prescription>
                         <Prescription measure="mg">
@@ -87,30 +85,30 @@
             </MedicalHistory>
         </Patient>
     </Patients>
-    <Doctors xlmns="www.mif.vu.lt/doctors">
-        <Doctor id="D000001">
-            <FullName></FullName>
+    <Employees>
+        <doctor:Employee id="D000001">
+            <FullName>Faustas Mažeikis</FullName>
             <Speciality license="MPL-10931">Diagnostician</Speciality>
             <Department>Diagnostics</Department>
             <PhoneNumber>+37061417844</PhoneNumber>
-        </Doctor>
-        <Doctor id="D000002">
-            <FullName></FullName>
+        </doctor:Employee>
+        <doctor:Employee id="D000002">
+            <FullName>Joana Irisa</FullName>
             <Speciality license="MPL-14274">Neurosurgeon</Speciality>
             <Department>Surgery</Department>
             <PhoneNumber>+37065729345</PhoneNumber>
-        </Doctor>
-        <Doctor id="D000014">
-            <FullName></FullName>
+        </doctor:Employee>
+        <doctor:Employee id="D000014">
+            <FullName>Karolina Marmeladova</FullName>
             <Speciality license="MPL-19238">General Practitioner</Speciality>
             <Department>Family Medicine</Department>
             <PhoneNumber>+37062021441</PhoneNumber>
-        </Doctor>
-        <Doctor id="D004744">
-            <FullName></FullName>
+        </doctor:Employee>
+        <doctor:Employee id="D004744">
+            <FullName>Viljemas Baltasis</FullName>
             <Speciality license="MPL-20121">Oncologist</Speciality>
             <Department>Oncology</Department>
             <PhoneNumber>+37067777777</PhoneNumber>
-        </Doctor>
-    </Doctors>
+        </doctor:Employee>
+    </Employees>
 </Hospital>
