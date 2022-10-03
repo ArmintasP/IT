@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<Hospital xmlns="www.mif.vu.lt/hospital"
-          xmlns:doctor="www.mif.vu.lt/doctors">
-    <Patients xlmns="www.mif.vu.lt/patients">
+<Hospital>
+    <Patients>
         <Patient id="50109113325" sex="male">
             <FullName>Vilius Tažauskas</FullName>
             <Birthdate>2001-09-11</Birthdate>
@@ -86,29 +85,29 @@
         </Patient>
     </Patients>
     <Employees>
-        <doctor:Employee id="D000001">
+        <Employee id="D000001">
             <FullName>Faustas Mažeikis</FullName>
             <Speciality license="MPL-10931">Diagnostician</Speciality>
             <Department>Diagnostics</Department>
             <PhoneNumber>+37061417844</PhoneNumber>
-        </doctor:Employee>
-        <doctor:Employee id="D000002">
+        </Employee>
+        <Employee id="D000002">
             <FullName>Joana Irisa</FullName>
             <Speciality license="MPL-14274">Neurosurgeon</Speciality>
             <Department>Surgery</Department>
             <PhoneNumber>+37065729345</PhoneNumber>
-        </doctor:Employee>
-        <doctor:Employee id="D000014">
+        </Employee>
+        <Employee id="D000014">
             <FullName>Karolina Marmeladova</FullName>
             <Speciality license="MPL-19238">General Practitioner</Speciality>
             <Department>Family Medicine</Department>
             <PhoneNumber>+37062021441</PhoneNumber>
-        </doctor:Employee>
-        <doctor:Employee id="D004744">
+        </Employee>
+        <Employee id="D004744">
             <FullName>Viljemas Baltasis</FullName>
             <Speciality license="MPL-20121">Oncologist</Speciality>
             <Department>Oncology</Department>
             <PhoneNumber>+37067777777</PhoneNumber>
-        </doctor:Employee>
+        </Employee>
     </Employees>
 </Hospital>
