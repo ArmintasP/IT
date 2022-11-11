@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "definitions": {
+        "DoctorIdType":{
+            "type": "string",
+            "pattern": "^[DAEX]{1}[0-9]{6}$"
+        },
+
+        "Person": {
+            "type": "object",
+            "properties": {
+                "FullName": {"type": "string", "pattern": "^[\\p{L} \\p{Z}]+$"},
+                "Birthdate": {"type": "string", "pattern": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"}
+            }
+        },
+
+        "Patient": { 
+            "allOf": [
+                { "$ref": "#/definitions/Person" }, 
+                {
+                    "properties": {
+                        "Sex": { "type": "string", "enum": ["female", "male", "intersex"]},
+                        "MedicalDebt": {"type": "number", "minimum": 0},
+                        "MedicalHistory": {"type": "array", "items": {"$ref": "#/definitions/MedicalHistory"}},
+                        "Id": { 
+                            "anyOf":[
+                                { "type": "string", "pattern": "^[0-9]{11}$"},
+                                { "type": "integer", "minimum": 10000000000, "maximum": 100000000000, "exclusiveMaximum": true}
+                            ]
+                        }
+                    },
+                    "required": ["Id", "FullName", "Sex", "Birthdate", "MedicalDebt", "MedicalHistory"]
+                }
+            ]
+        },
+
+        "MedicalHistory": {
+            "type": "object",
+            "properties": {
+                "DoctorRef": { "$ref": "#/definitions/DoctorIdType" },
+                "Diagnosis": { "type": "string" },
+                "AdmissionNote": { "type": "string" },
+                "Treatment": { 
+                    "type": "object",
+                    "properties": {
+                        "Prescription": {
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/Prescription"}
+                        }                             
+                    },
+                    "additionalProperties": false,
+                    "required": ["Prescription"]
+                }
+            },
+            "additionalProperties": false,
+            "required": ["DoctorRef", "Diagnosis", "Treatment", "AdmissionNote"]
+        },
+
+        "Prescription": {
+            "type": "object",
+            "properties": {
+                "Measure": { "type": "string", "enum": ["mg", "g"]},
+                "Name": { "type": "string"},
+                "DoseSize": { "type": "integer", "minimum": 1, "maximum": 999},
+                "DosingInterval": { "type": "string"},
+                "Amount": { "oneOf":[
+                    {"type": "integer", "multipleOf": 20},
+                    {"type": "integer", "multipleOf": 30}
+                ]}
+            },
+            "additionalProperties": false,
+            "required": [ "Measure", "Name", "DoseSize", "DosingInterval", "Amount" ]
+        },
+
+        "Doctor": {
+            "allOf": [
+                { "$ref": "#/definitions/Person" }, 
+                {
+                    "properties": {
+                        "Id": { "$ref": "#/definitions/DoctorIdType" },
+                        "License": { "type": "string", "pattern": "^MPL-[0-9]{5}$" },
+                        "PhoneNumber": { "type": "string", "pattern": "^\\+370[56][0-9]{7}$"} ,
+                        "Speciality": { "enum": [
+                            "Diagnostician", 
+                            "Neurosurgeon",
+                            "General Practitioner",
+                            "Oncologist",
+                            "Hematologist"
+                        ]},
+                        "Department": { "enum": [
+                            "Diagnostics",
+                            "Surgery",
+                            "Family Medicine",
+                            "Oncology",
+                            "Infectious disease",
+                            "Neurology",
+                            "Cardiology"
+                        ]}
+                    },
+                    "required": ["Id", "FullName", "License", "Speciality", "Department", "PhoneNumber"]
+                }
+            ]
+        }
+    },
+
+    "type": "object",
+    "properties": {
+        "$schema": {"type" : "string", "pattern": "^2.schema.json$"},
+
+        "Hospital": {
+            "type": "object",
+            "properties": {
+                "Patients": {
+                    "type": "array",
+                    "items":{ "$ref": "#/definitions/Patient" },
+                    "uniqueItems": true
+                },
+                "Employees": { 
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/Doctor" },
+                    "uniqueItems": true
+                }
+            },
+            "additionalProperties": false,
+            "required": ["Patients", "Employees"]
+        }
+    },
+    "additionalProperties": false,
+    "required": ["$schema", "Hospital"]
+
+}

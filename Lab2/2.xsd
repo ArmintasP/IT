@@ -1,0 +1,231 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://mif.vu.lt/"
+           xmlns="https://mif.vu.lt/"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified">
+
+    <xs:element name="Hospital" type="HospitalType">
+        <xs:keyref name="RefToDoctor" refer="DoctorKey">
+            <xs:selector 
+                xpath="Patients/Patient/MedicalHistory/MedicalRecord/Doctor"/>
+            <xs:field xpath="@ref"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:complexType name="HospitalType" >
+        <xs:sequence>
+            <xs:element name="Patients" type="PatientsType">
+                <xs:key name="PatientKey" >
+                    <xs:selector xpath="Patient"/>
+                    <xs:field xpath="@id" />
+                </xs:key>
+            </xs:element>
+
+            <xs:element name="Employees" type="EmployeesType">
+                <xs:key name="DoctorKey" >
+                    <xs:selector xpath="Doctor | Resident"/>
+                    <xs:field xpath="@id" />
+                </xs:key>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PatientsType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Patient" type="PatientType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PatientType">
+        <xs:sequence>
+                <xs:element name="FullName" type="FullNameType"/>
+                <xs:element name="Birthdate" type="xs:date"/>
+                <xs:element name="MedicalDebt" type="MedicalDebtType"/>
+                <xs:element name="MedicalHistory" type="MedicalHistoryType"/>
+        </xs:sequence>
+
+        <xs:attribute name="id" type="patientIdType" use="required"/>
+        <xs:attribute name="sex" type="sexType" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="FullNameType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:whiteSpace value="collapse"/>
+            <xs:pattern value="[\p{L} \p{Z}]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MedicalDebtType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="MedicalHistoryType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="MedicalRecord" type="MedicalRecordType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MedicalRecordType">
+        <xs:sequence>
+            <xs:element name="Doctor" type="DoctorRefType"/>
+            <xs:element name="Diagnosis" type="xs:normalizedString"/>
+            <xs:element name="Treatment" type="TreatmentType" minOccurs="0"/>
+            <xs:element name="AdmissionNote" type="xs:normalizedString"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DoctorRefType">
+        <xs:attribute name="ref" type="employeeIdType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="TreatmentType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Prescription" type="PrescriptionType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PrescriptionType" mixed="true">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="DoseSize" type="xs:positiveInteger"/>
+            <xs:element name="DosingInterval" type="xs:normalizedString"/>
+            <xs:element name="Amount" type="xs:positiveInteger"/>
+        </xs:sequence>
+
+        <xs:attribute name="measure" type="prescriptionMeasureType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="EmployeesType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Employee" type="EmployeeType"/>
+            <xs:element name="Doctor" type="DoctorType"/>
+            <xs:element name="Resident" type="ResidentType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="EmployeeType">
+        <xs:sequence>
+            <xs:element name="FullName" type="FullNameType"/>
+            <xs:element name="PhoneNumber" type="PhoneNumberType"/>
+        </xs:sequence>
+
+        <xs:attribute name="id" type="employeeIdType" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="DoctorType">
+        <xs:complexContent>
+            <xs:extension base="EmployeeType">
+                <xs:sequence>
+                    <xs:element name="Speciality" type="SpecialityTypeWithLicense"/>
+                    <xs:element name="Department" type="DepartmentType" maxOccurs="3"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SpecialityTypeWithLicense">
+        <xs:simpleContent>
+            <xs:extension base="SpecialityType" >
+                <xs:attribute name="license" type="licenseType" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="SpecialityType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Diagnostician"/>
+            <xs:enumeration value="Neurosurgeon"/>
+            <xs:enumeration value="General Practitioner"/>
+            <xs:enumeration value="Oncologist"/>
+            <xs:enumeration value="Hematologist"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="DepartmentType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Diagnostics"/>
+            <xs:enumeration value="Surgery"/>
+            <xs:enumeration value="Family Medicine"/>
+            <xs:enumeration value="Oncology"/>
+            <xs:enumeration value="Infectious disease"/>
+            <xs:enumeration value="Neurology"/>
+            <xs:enumeration value="Cardiology"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PhoneNumberType">
+        <xs:list itemType="SinglePhoneNumberType"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="SinglePhoneNumberType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="\+370[56][0-9]{7}"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ResidentType">
+        <xs:complexContent>
+            <xs:extension base="ResidentBaseType">
+                <xs:attribute name="residencyStartDate" type="xs:date"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ResidentBaseType">
+        <xs:complexContent>
+            <xs:restriction base="DoctorType">
+                <xs:sequence>
+                    <xs:element name="FullName" type="FullNameType"/>
+                    <xs:element name="PhoneNumber" type="PhoneNumberType"/>
+                    <xs:element name="Speciality" type="ResidentSpecialityTypeWithLicense"/>
+                    <xs:element name="Department" type="DepartmentType" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ResidentSpecialityTypeWithLicense">
+        <xs:simpleContent>
+            <xs:restriction base="SpecialityTypeWithLicense">
+                <xs:enumeration value="Diagnostician"/>
+                <xs:enumeration value="General Practitioner"/>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <!-- Attribute types -->
+
+    <xs:simpleType name="patientIdType" >
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="[0-9]{11}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="employeeIdType" >
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="[DAEX]{1}[0-9]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="sexType" >
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="male|female|intersex"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="prescriptionMeasureType" >
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="mg|g|ml"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="licenseType" >
+        <xs:restriction base="xs:normalizedString">
+            <xs:pattern value="MPL-[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>
