@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="lt">
+    <head>
+        <title>Hospital page</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <header>
+            <img id="footerLogo" alt="Hospital logo" title="Logo" src="hospitalLogo.png">
+            <h1>Hospital+</h1>
+            <p>We care. A lot.</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">About</a></li>
+                <li><a href="index.html">Contact</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h3>News</h3>
+            <article class="alert">
+                <h3>Visiting patients during Christmas holiday season</h3>
+                <p>Visting hours start at 4PM and end at 7pm from December 23rd to 28th. Thank you for your understanding.</p>
+            </article>
+            <article class="announcement">
+                <h3>Happy to see improvements</h3>
+                <p>We are happy that our hospital continues to expand. You can see how much our hospital's growth in the table below.</p>
+                <table id="table1">
+                    <tr>
+                        <th rowspan="2">Year</th>
+                        <th colspan="3">Employees</th>
+                        <th colspan="2">Patients</th>
+                    </tr>
+                    <tr>
+                        <th>Medical professionals</th>
+                        <th>Researchers</th>
+                        <th>Other personnel</th>
+                        <th>Local</th>
+                        <th>Nonlocal</th>
+                    </tr>
+                    <tr>
+                        <td>2020</td>
+                        <td>4214</td>
+                        <td>15</td>
+                        <td>336</td>
+                        <td>514022</td>
+                        <td>34057</td>
+                    </tr>
+                    <tr>
+                        <td>2021</td>
+                        <td>4833</td>
+                        <td>33</td>
+                        <td>360</td>
+                        <td>553011</td>
+                        <td>5057</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>4849</td>
+                        <td>38</td>
+                        <td>371</td>
+                        <td>594442</td>
+                        <td>18227</td>
+                    </tr>
+                </table>
+            </article>
+            <article class="announcement">
+                <h3>Our global ranking improves</h3>
+                <p>Our personnel tries its best every day, we are glad their efforts don't stop surprising us. Our global ranking has improved, more details can be seen <a href="https://hospitals.webometrics.info/en/world">here</a>.</p>
+            </article>
+        </section>
+        <aside>
+            <h3>Share your experience</h3>
+            <form>
+                <p>You are:</p>
+                <label>
+                    <input type="radio" name="sender">Our employee
+                </label>
+                <label>
+                    <input type="radio" name="sender">Our patient
+                </label>
+                <label>
+                    <input type="radio" name="sender">Other
+                </label><br>
+                Your experience was in:<br>
+                <select size="3" name="department">
+                    <option value="Diagnostics">Diagnostics Department</option>
+                    <option value="Surgery">Surgery Department</option>
+                    <option value="Family Medicine">Family Medicine Department</option>
+                    <option value="Other">Other Department</option>
+                </select><br>
+                
+                <input type="email" name="email" placeholder="youremail@mail.com" required><br>
+                Incident date (if applies): <input type="date" name="date"><br>
+                <input type="text" name="review" placeholder="Your experience, review" required><br>
+                I wouldn't mind being contacted: <input type="checkbox" name="contact" value="yes"><br>
+                <input type="submit" value="Submit"><br>
+                <input type="reset" value="Reset">
+            </form>
+        </aside>
+        <footer>
+            <p>Copyright © 2022 Hospital+</p>
+            <p>Contacts: +44 3069 990289</p>
+        </footer>
+    </body>
+</html>
+

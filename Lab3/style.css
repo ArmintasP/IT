@@ -1,0 +1,120 @@
+header > img#footerLogo {
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
+
+nav li {
+    display: inline;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+nav ul {
+    font-size: 24px;
+    text-align: center;
+}
+
+nav {
+    padding: 10px;
+}
+
+header > h1 {
+    display: inline;
+}
+
+article.announcement {
+    background-color: antiquewhite;
+}
+
+article.alert {
+    background-color: rgba(196, 3, 61, 0.7)
+}
+
+section {
+    float: left;
+    width: calc( 60% - 8px );
+    border: 4px solid palegreen
+}
+
+section article {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+article table {
+    overflow-x:auto;
+    display: inherit;
+}
+
+table {
+    border-collapse: collapse !important;
+}
+
+#table1 {
+    border-collapse: separate;
+}
+
+th, td, tr {
+    padding: 2px;
+    border-spacing: 0;
+    margin: 5px;
+    border: 1px solid black;
+    color: black;
+}
+
+[colspan] {
+    font-size: 125%;
+}
+
+section > h3 {
+    font-size: 150%;
+    color: orangered;
+}
+
+form > * {
+    margin-top: 5px;
+}
+
+form [name="review"] {
+    line-height: 2em;
+    width: 100%;
+    text-align: left;
+}
+
+aside {
+    float: right;
+    width: calc( 40% - 30px );
+    margin: 15px;
+}
+
+footer {
+    padding: 5px;
+    clear: both;
+}
+
+
+@media screen and (max-width: 800px) {
+    aside {
+        display: none;
+    }
+
+    section {
+        clear: both;
+        width: 100%;
+    }
+
+    nav li {
+        display: unset;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    nav ul {
+        font-size: unset;
+        text-align: center;
+    }
+}
+
+
+
+
