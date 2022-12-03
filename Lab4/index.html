@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="lt">
+    <head>
+        <title>Plan 75</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+        <script type="text/javascript" src="functions.js"></script>
+        <style>
+            form {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            table, td, th {
+                border: solid 1px black;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <form id="submission-form" onsubmit="return submissionFormSubmit()" >
+                <input type="text" id="username" placeholder="Your usernname"><br>
+                <input type="text" id="age" placeholder="Your age"><br>
+                <input type="text" id="year" placeholder="Your favourite year"><br>
+                <input type="text" id="month" placeholder="Your favourite month number"><br>
+                <input type="text" id="day" placeholder="Your favourite day number"><br>
+                Send it to jsonBlob? <input type="checkbox" id="jsonblobsend" value="yes"><br>
+                <input type="submit" value="Submit"><br>
+                <input type="reset" value="Reset">
+            </form>
+
+            <p>Hide or show submission.</p>
+            <form id="display-form" onsubmit="return displayFormSubmit()" >
+                <input type="number" id="submission-display" 
+                    placeholder="Submission number.">
+                <input type="submit" value="Submit"><br>
+            </form>
+
+            <p>Change submission text:</p>
+            <form id="change-text-form" onsubmit="return changeTextFormSubmit()" >
+                <input type="number" id="change-text-number" 
+                    placeholder="Submission number.">
+                <input type="text" id="change-text-newtext" 
+                    placeholder="Enter new text">
+                <input type="submit" value="Submit"><br>
+            </form>
+
+            <p>Change submission font color:</p>
+            <form id="change-style-form" onsubmit="return changeStyleFormSubmit()" >
+                <input type="number" id="change-style-number" 
+                    placeholder="Submission number.">
+                <input type="text" id="change-style-style" 
+                    placeholder="Enter new color">
+                <input type="submit" value="Submit"><br>
+            </form>
+
+            <p>Delete submission:</p>
+            <form id="delete-form" onsubmit="return deleteFormSubmit()" >
+                <input type="number" id="delete-number" 
+                    placeholder="Submission number.">
+                <input type="submit" value="Submit"><br>
+            </form>
+
+            <p>Add custom submission:</p>
+            <form id="add-form" onsubmit="return addFormSubmit()" >
+                <input type="text" id="add-text" 
+                    placeholder="Enter your text.">
+                <input type="submit" value="Submit"><br>
+            </form>
+            
+            <article id="submissions">
+                <p>Total submissions submitted: <span id="submission-count">0</span>.</p>
+            </article>
+
+            <table id="table">
+                <tr>
+                    <th>BlodId</th>
+                    <th>Username</th>
+                    <th>Age</th>
+                    <th>Date</th>
+                </tr>
+            </table>
+        </section>
+    </body>
+</html>
